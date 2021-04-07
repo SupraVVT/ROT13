@@ -7,7 +7,7 @@ namespace ROT13
         static void Main(string[] args)
         {
             var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            var str = "cvpbPGS{abg_gbb_onq_bs_n_ceboyrz}";
+            var str = "cvpbPGS{arkg_gvzr_V'yy_gel_2_ebhaqf_bs_ebg13_jdJBFOXJ}";
 
             string rotString = "";
 
@@ -15,30 +15,18 @@ namespace ROT13
    
             foreach (var c in str)
             {
-                if (c == '{')
-                {
-                    rotString += "{";
-                    continue;
-                }
-
-                if (c == '}')
-                {
-                    rotString += "}";
-                    continue;
-                }
-
-                if (c == '_')
-                {
-                    rotString += "_";
-                    continue;
-                }
-
                 var pos = alphabet.IndexOf(c);
 
-                if (pos < 26)
+                if (pos < 0)
+                {
+                    rotString += c;
+                    continue;
+                }
+
+                else if (pos < 26)
                 {
                     // Capital Letter
-                    if(pos + 13 >= (alphabet.Length / 2))
+                    if (pos + 13 >= (alphabet.Length / 2))
                     {
                         var wrap = ((alphabet.Length / 2) - pos);
                         nextChar = alphabet[(13) - wrap];
@@ -62,16 +50,8 @@ namespace ROT13
                     }
                 }
                 
-
-                rotString += nextChar;
-
-                
+                rotString += nextChar;                
             }
-
-
-
-            
-
 
             Console.WriteLine(rotString);
         }
